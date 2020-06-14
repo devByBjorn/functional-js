@@ -21,7 +21,7 @@ const listItemsCount = (capitalize, array) =>
     }
   }, {})
 
-// console.log(listItemsCount(capitalize, names))
+console.log(listItemsCount(capitalize, names))
 
 // partial applicatio without Ramda
 const applyPartial = (listItemsCount, capitalize) =>
@@ -29,10 +29,10 @@ const applyPartial = (listItemsCount, capitalize) =>
 
 const countWithCapitlizePartial = applyPartial(listItemsCount, capitalize)
 const countNamesPartialWay = countWithCapitlizePartial(names)
-console.log('The partial way without Ramda:', countNamesPartialWay)
+console.log(countNamesPartialWay, 'The partial way without Ramda:')
 
 // partial application with Ramda
 const listItemsCountCurried = R.curry(listItemsCount)
 const countWithCapitlizedAsPartial = listItemsCountCurried(capitalize)
 const countAllNames = countWithCapitlizedAsPartial(names)
-console.log('The partial way with Ramda:', countAllNames)
+console.log(countAllNames, 'The partial way with Ramda:')
