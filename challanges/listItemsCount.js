@@ -5,12 +5,12 @@ const names = [
   'Bjorn', 'Bjorn', 'Erik', 'Bjorn', 'Erik', 'AnNa', 'Bjorn',
   'Erik', 'Matilda', 'Matilda', 'ERik', 'MaTIlda', 'Bjorn']
 
-const capitalize = string => {
+export const capitalize = string => {
   string = string.toLowerCase()
   return string.slice(0, 1).toUpperCase() + string.slice(1, string.length)
 }
 
-const listItemsCount = (capitalize, array) =>
+export const listItemsCount = (capitalize, array) =>
   array.reduce((acc, name) => {
     name = capitalize(name)
     const count = acc[name] || 0
@@ -21,18 +21,21 @@ const listItemsCount = (capitalize, array) =>
     }
   }, {})
 
-console.log(listItemsCount(capitalize, names))
+//console.log(listItemsCount(capitalize, names))
 
-// partial applicatio without Ramda
-const applyPartial = (listItemsCount, capitalize) =>
+// partial application without Ramda
+export const applyPartial = (listItemsCount, capitalize) =>
   names => listItemsCount(capitalize, names)
 
-const countWithCapitlizePartial = applyPartial(listItemsCount, capitalize)
+console.log(applyPartial.length)
+
+export const countWithCapitlizePartial = applyPartial(listItemsCount, capitalize)
 const countNamesPartialWay = countWithCapitlizePartial(names)
-console.log(countNamesPartialWay, 'The partial way without Ramda:')
+//console.log(countNamesPartialWay, 'The partial way without Ramda:')
 
 // partial application with Ramda
 const listItemsCountCurried = R.curry(listItemsCount)
-const countWithCapitlizedAsPartial = listItemsCountCurried(capitalize)
-const countAllNames = countWithCapitlizedAsPartial(names)
-console.log(countAllNames, 'The partial way with Ramda:')
+export const countWithCapitlizedPartialRamda = listItemsCountCurried(capitalize)
+const countAllNames = countWithCapitlizedPartialRamda(names)
+// console.log(countAllNames, 'The partial way with Ramda:')
+
